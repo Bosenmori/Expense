@@ -17,24 +17,24 @@ public class DailyLog{
 
     public DailyLog(Double DailyBudget){
         if (DailyBudget.equals(0.0)) {
-            System.out.println("goto budget setter");
+           //goto budget setter gui
         }
         this.DailyBudget = DailyBudget;
         this.remainingBudget = DailyBudget;
     }
     public void add(Expense e){
         expenses.add(e);
-        UpdateAndCalulateExpenses();
+        UpdateAndCalculateExpenses();
     }
     //if date = newday then clearlist and set spent, remain to 0.0
     public void endDay(){
         //Loop check
 
-
+        exportToCSV("Log");
         expenses.clear();
         this.spent = 0.0;
         this.remainingBudget = this.DailyBudget;
-        UpdateAndCalulateExpenses();
+        UpdateAndCalculateExpenses();
     }
     
     public void exportToCSV(String filename) {
@@ -81,7 +81,7 @@ public class DailyLog{
         }
     } */
 
-    private void UpdateAndCalulateExpenses(){ //recalculate when DailyBudget have been change
+    private void UpdateAndCalculateExpenses(){ //recalculate when DailyBudget have been change
         double tmp1 = 0; //Spent
         double tmp2 = this.DailyBudget;//Remain
         //calculate     
@@ -90,12 +90,6 @@ public class DailyLog{
         this.remainingBudget = (tmp2 -= expense.getAmount());
         }
     }
-    //Temp method reomove when gonna push
-/*     public void showALL(){
-        for (Expense expense : expenses) {
-            System.out.println(expense);
-        }
-    } */
     public List<Expense> getExpenses() {
         return expenses;
     }
@@ -104,7 +98,7 @@ public class DailyLog{
     }
     public void setDailyBudget(double dailyBudget) {
         DailyBudget = dailyBudget;
-        UpdateAndCalulateExpenses();
+        UpdateAndCalculateExpenses();
     }
     public double getRemainingBudget() {
         return remainingBudget;
