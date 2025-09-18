@@ -17,9 +17,9 @@ public class ConfigManager {
         try (BufferedReader br = new BufferedReader(new FileReader("./Config/config.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if (line.startsWith("dailyBudget=0.0")) {
+                if (line.startsWith("dailyBudget=")) {
                     dailyBudget = Double.parseDouble(line.split("=")[1].trim());
-                } else if (line.startsWith("categories= ")) {
+                } else if (line.startsWith("categories=")) {
                     String[] cats = line.split("=")[1].split(",");
                     for (String cat : cats) {
                         categories.add(cat.trim());
